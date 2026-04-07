@@ -1,0 +1,108 @@
+---
+### group_vars/ENTERPRISE.yml
+
+# Ansible connectivity definitions
+# eAPI connectivity via HTTPS is specified (as opposed to CLI via SSH)
+ansible_connection: ansible.netcommon.httpapi
+# Specifies that we are indeed using Arista EOS
+ansible_network_os: arista.eos.eos
+# This user/password must exist on the switches to enable Ansible access
+ansible_user: arista
+ansible_password: arista
+# User escalation (to enter enable mode)
+ansible_become: true
+ansible_become_method: enable
+# Use SSL (HTTPS)
+ansible_httpapi_use_ssl: true
+# Do not try to validate certs
+ansible_httpapi_validate_certs: false
+
+# Common AVD group variables
+fabric_name: enterprise
+
+# Generate CSVs with fabric link info.
+eos_designs_documentation:
+  topology_csv: true
+  p2p_links_csv: true
+
+# Define underlay and overlay routing protocol to be used
+underlay_routing_protocol: isis
+overlay_routing_protocol: ebgp
+
+management_eapi:
+  enabled: true
+
+# Local users
+aaa_settings:
+  local_users:
+    # Username with no password configured
+    - name: admin
+      privilege: 15
+      role: network-admin
+      no_password: true
+
+    # Username with a password
+    - name: arista
+      privilege: 15
+      role: network-admin
+      sha512_password: "$6$Enl0WfE32FthwyiJ$yTyGaEJ2uPKLU.F7314YtB7J1jrzrMi7ogXIRTEHQfLdLgKWWmr1UvNlZLN6AyuxET7G5aH3AI9OYRzxVTkB1."
+
+# BGP peer groups passwords
+bgp_peer_groups:
+  # all passwords set to "arista"
+  evpn_overlay_peers:
+    password: Q4fqtbqcZ7oQuKfuWtNGRQ==
+
+# P2P interfaces MTU, includes VLANs 4093 and 4094 that are over peer-link
+# If you're running vEOS-lab or cEOS, you should use MTU of 1500 instead as shown in the following line
+# p2p_uplinks_mtu: 1500
+p2p_uplinks_mtu: 1500
+
+# Define default interfaces
+default_interfaces:
+  - types: [spine]
+    platforms: [default]
+    downlink_interfaces: [Ethernet1-12]
+  - types: [l3leaf]
+    platforms: [default]
+    uplink_interfaces: [Ethernet1-2]
+    downlink_interfaces: [Ethernet3-12]
+  - types: [l2leaf]
+    platforms: [default]
+    uplink_interfaces: [Ethernet1-2]
+    mlag_interfaces: [Ethernet3-4]
+    downlink_interfaces: [Ethernet5-12]
+
+# L3 Edge port definitions. This can be any port in the entire Fabric, where IP interfaces are defined.
+l3_edge:
+  # Define a new IP pool that will be used to assign IP addresses to L3 Edge interfaces.
+  p2p_links_ip_pools:
+    - name: dci_p2p_ipp
+      ipv4_pool: 172.16.0.0/24
+  # Define a new link profile which will match the IP pool, the used ASNs and include the defined interface into underlay routing
+  p2p_links_profiles:
+    - name: dci_p2p_prf
+      ip_pool: dci_p2p_ipp
+      include_in_underlay_protocol: true
+  # Define each P2P L3 link and link the nodes, the interfaces and the profile used.
+  p2p_links:
+    - id: 1
+      nodes: [dc1-gw1, dc2-gw1]
+      interfaces: [Ethernet11, Ethernet11]
+      profile: dci_p2p_prf
+      as: [4201000001, 4202000001]
+    - id: 2
+      nodes: [dc1-gw1, dc2-gw2]
+      interfaces: [Ethernet12, Ethernet11]
+      profile: dci_p2p_prf
+      as: [4201000001, 4202000002]
+    - id: 3
+      nodes: [dc1-gw2, dc2-gw1]
+      interfaces: [Ethernet11, Ethernet12]
+      profile: dci_p2p_prf
+      as: [4201000002, 4202000001]
+    - id: 2
+      nodes: [dc1-gw2, dc2-gw2]
+      interfaces: [Ethernet12, Ethernet12]
+      profile: dci_p2p_pr
+      as: [4201000002, 4202000002]

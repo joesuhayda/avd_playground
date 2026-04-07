@@ -1,0 +1,3 @@
+### group_vars/DC1_MEMBER_LEAFS.yml
+
+type: l2leaf
