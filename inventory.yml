@@ -1,0 +1,102 @@
+---
+all:
+  children:
+    FABRIC:
+      children:
+        DC1:
+          children:
+            DC1_SPINES:
+              hosts:
+                dc1-sp1:
+                  ansible_host: 198.18.1.1
+                dc1-sp2:
+                  ansible_host: 198.18.1.2
+                dc1-sp3:
+                  ansible_host: 198.18.1.3
+            DC1_ACCESS_LEAFS:
+              hosts:
+                dc1-al1:
+                  ansible_host: 198.18.1.11
+                dc1-al2:
+                  ansible_host: 198.18.1.12
+                dc1-al3:
+                  ansible_host: 198.18.1.13
+                dc1-al4:
+                  ansible_host: 198.18.1.14
+            DC1_SERVICE_LEAFS:
+              hosts:
+                dc1-sl1:
+                  ansible_host: 198.18.1.21
+                dc1-sl2:
+                  ansible_host: 198.18.1.22
+            DC1_GATEWAY_LEAFS:
+              hosts:
+                dc1-gw1:
+                  ansible_host: 198.18.1.31
+                dc1-gw2:
+                  ansible_host: 198.18.1.32
+            DC1_MEMBER_LEAFS:
+              hosts:
+                dc1-ml1:
+                  ansible_host: 198.18.1.41
+                dc1-ml2:
+                  ansible_host: 198.18.1.42
+        DC2:
+          children:
+            DC2_SPINES:
+              hosts:
+                dc2-sp1:
+                  ansible_host: 198.18.1.1
+                dc2-sp2:
+                  ansible_host: 198.18.1.2
+                dc2-sp3:
+                  ansible_host: 198.18.1.3
+            DC2_ACCESS_LEAFS:
+              hosts:
+                dc2-al1:
+                  ansible_host: 198.18.1.11
+                dc2-al2:
+                  ansible_host: 198.18.1.12
+                dc2-al3:
+                  ansible_host: 198.18.1.13
+                dc2-al4:
+                  ansible_host: 198.18.1.14
+            DC2_SERVICE_LEAFS:
+              hosts:
+                dc2-sl1:
+                  ansible_host: 198.18.1.21
+                dc2-sl2:
+                  ansible_host: 198.18.1.22
+            DC2_GATEWAY_LEAFS:
+              hosts:
+                dc2-gw1:
+                  ansible_host: 198.18.1.31
+                dc2-gw2:
+                  ansible_host: 198.18.1.32
+            DC2_MEMBER_LEAFS:
+              hosts:
+                dc2-ml1:
+                  ansible_host: 198.18.1.41
+                dc2-ml2:
+                  ansible_host: 198.18.1.42
+
+    NETWORK_SERVICES:
+      children:
+        DC1_ACCESS_LEAFS:
+        DC1_SERVICE_LEAFS:
+        DC1_GATEWAY_LEAFS:
+        DC1_MEMBER_LEAFS:
+        DC2_ACCESS_LEAFS:
+        DC2_SERVICE_LEAFS:
+        DC2_GATEWAY_LEAFS:
+        DC2_MEMBER_LEAFS:
+    CONNECTED_ENDPOINTS:
+      children:
+        DC1_ACCESS_LEAFS:
+        DC1_SERVICE_LEAFS:
+        DC1_GATEWAY_LEAFS:
+        DC1_MEMBER_LEAFS:
+        DC2_ACCESS_LEAFS:
+        DC2_SERVICE_LEAFS:
+        DC2_GATEWAY_LEAFS:
+        DC2_MEMBER_LEAFS:
