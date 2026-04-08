@@ -1,3 +1,27 @@
+---
 ### group_vars/DC1_SERVICE_LEAFS.yml
 
 type: l3leaf
+
+l3leaf:
+  defaults:
+    platform: cEOSLab 
+    loopback_ipv4_pool: 198.18.255.0/24
+    loopback_ipv4_offset: 20
+    vtep_loopback_ipv4_pool: 198.18.11.0/24
+    uplink_switches: [dc1-sp1, dc1-sp2, dc1-sp3] 
+    virtual_router_mac_address: 00:1c:73:00:00:99 
+    spanning_tree_priority: 4096 
+    spanning_tree_mode: mstp 
+
+  node_groups: 
+    - group: DC1_SERVICE_LEAFS
+      nodes:
+        - name: dc1-sl1
+          id: 1
+          mgmt_ip: 198.18.1.21/24
+          bgp_as: 4201010021
+        - name: dc1-sl2
+          id: 2
+          mgmt_ip: 198.18.1.22/24
+          bgp_as: 4201010022

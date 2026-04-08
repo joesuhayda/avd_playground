@@ -1,3 +1,4 @@
+---
 ### group_vars/DC1_SPINES.yml
 
 type: spine
@@ -12,14 +13,17 @@ spine:
     - name: dc1-sp1
       id: 1 
       mgmt_ip: 198.18.1.1/24
-      uplink_ipv4_pool: 198.19.1.0/24  # Links to SPINE1 use this
+      downlink_pools:
+        - ipv4_pool: 198.19.1.0/24
 
     - name: dc1-sp2
       id: 2
       mgmt_ip: 198.18.1.2/24
-      uplink_ipv4_pool: 198.19.2.0/24  # Links to SPINE2 use this
+      downlink_pools:
+        - ipv4_pool: 198.19.2.0/24
 
     - name: dc1-sp3
       id: 3
       mgmt_ip: 198.18.1.3/24
-      uplink_ipv4_pool: 198.19.3.0/24  # Links to SPINE3 use this
+      downlink_pools:
+        - ipv4_pool: 198.19.3.0/24

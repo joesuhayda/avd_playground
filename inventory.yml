@@ -37,10 +37,14 @@ all:
                   ansible_host: 198.18.1.32
             DC1_MEMBER_LEAFS:
               hosts:
-                dc1-ml1:
+                dc1-m1a:
                   ansible_host: 198.18.1.41
-                dc1-ml2:
+                dc1-m1b:
                   ansible_host: 198.18.1.42
+                dc1-m2a:
+                  ansible_host: 198.18.1.43
+                dc1-m2b:
+                  ansible_host: 198.18.1.44
         DC2:
           children:
             DC2_SPINES:
@@ -75,10 +79,14 @@ all:
                   ansible_host: 198.18.2.32
             DC2_MEMBER_LEAFS:
               hosts:
-                dc2-ml1:
+                dc2-m1a:
                   ansible_host: 198.18.2.41
-                dc2-ml2:
+                dc2-m1b:
                   ansible_host: 198.18.2.42
+                dc2-m2a:
+                  ansible_host: 198.18.2.43
+                dc2-m2b:
+                  ansible_host: 198.18.2.44
 
     NETWORK_SERVICES:
       children:

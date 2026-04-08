@@ -2,3 +2,5 @@
 ### group_vars/DC1.yml
 
 mgmt_gateway: 198.18.1.255
+
+isis_area_id: "49.0001"

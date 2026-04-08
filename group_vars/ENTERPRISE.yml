@@ -53,6 +53,13 @@ bgp_peer_groups:
   evpn_overlay_peers:
     password: Q4fqtbqcZ7oQuKfuWtNGRQ==
 
+# ISIS configurations
+isis_default_circuit_type: level-2
+isis_default_is_type: level-2
+isis_system_id_format: underlay_loopback
+underlay_isis_authentication_mode: md5
+underlay_isis_authentication_key: Q4fqtbqcZ7oQuKfuWtNGRQ==
+
 # P2P interfaces MTU, includes VLANs 4093 and 4094 that are over peer-link
 # If you're running vEOS-lab or cEOS, you should use MTU of 1500 instead as shown in the following line
 # p2p_uplinks_mtu: 1500
@@ -65,13 +72,13 @@ default_interfaces:
     downlink_interfaces: [Ethernet1-12]
   - types: [l3leaf]
     platforms: [default]
-    uplink_interfaces: [Ethernet1-2]
-    downlink_interfaces: [Ethernet3-12]
+    uplink_interfaces: [Ethernet1-4]
+    downlink_interfaces: [Ethernet5-12]
   - types: [l2leaf]
     platforms: [default]
-    uplink_interfaces: [Ethernet1-2]
-    mlag_interfaces: [Ethernet3-4]
-    downlink_interfaces: [Ethernet5-12]
+    uplink_interfaces: [Ethernet1-4]
+    mlag_interfaces: [Ethernet10-12]
+    downlink_interfaces: [Ethernet5-9]
 
 # L3 Edge port definitions. This can be any port in the entire Fabric, where IP interfaces are defined.
 l3_edge:
@@ -90,19 +97,19 @@ l3_edge:
       nodes: [dc1-gw1, dc2-gw1]
       interfaces: [Ethernet11, Ethernet11]
       profile: dci_p2p_prf
-      as: [4201000001, 4202000001]
+      as: [4201010031, 4202020031]
     - id: 2
       nodes: [dc1-gw1, dc2-gw2]
       interfaces: [Ethernet12, Ethernet11]
       profile: dci_p2p_prf
-      as: [4201000001, 4202000002]
+      as: [4201010031, 4202020032]
     - id: 3
       nodes: [dc1-gw2, dc2-gw1]
       interfaces: [Ethernet11, Ethernet12]
       profile: dci_p2p_prf
-      as: [4201000002, 4202000001]
+      as: [4201010032, 4202020031]
     - id: 2
       nodes: [dc1-gw2, dc2-gw2]
       interfaces: [Ethernet12, Ethernet12]
       profile: dci_p2p_pr
-      as: [4201000002, 4202000002]
+      as: [4201010032, 4202020032]
