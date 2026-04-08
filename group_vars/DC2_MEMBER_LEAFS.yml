@@ -1,0 +1,37 @@
+---
+### group_vars/DC2_MEMBER_LEAFS.yml
+
+type: l2leaf
+
+# L2 Leaf switch group
+l2leaf:
+  defaults:
+    platform: cEOSLab
+    spanning_tree_mode: mstp
+
+  node_groups:
+    - group: DC2_ML_PAIR1
+      uplink_switches: [dc2-al1, dc2-al2]
+      mlag_peer_ipv4_pool: 169.254.255.254/31
+      mlag_peer_ip_address: 169.254.255.254
+      mlag_peer_neighbor_ip_address: 169.254.255.255
+      nodes:
+        - name: dc2-m1a
+          id: 1
+          mgmt_ip: 198.18.2.41/24
+        - name: dc2-m1b
+          id: 2
+          mgmt_ip: 198.18.2.42/24
+
+    - group: DC2_ML_PAIR2
+      uplink_switches: [dc2-m2a, dc2-m2b]
+      mlag_peer_ipv4_pool: 169.254.255.254/31
+      mlag_peer_ip_address: 169.254.255.254
+      mlag_peer_neighbor_ip_address: 169.254.255.255
+      nodes:
+        - name: dc2-m2a
+          id: 1
+          mgmt_ip: 198.18.2.43/24
+        - name: dc2-m2b
+          id: 2
+          mgmt_ip: 198.18.2.44/24
