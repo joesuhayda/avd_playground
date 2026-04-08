@@ -18,7 +18,7 @@ ansible_httpapi_use_ssl: true
 ansible_httpapi_validate_certs: false
 
 # Common AVD group variables
-fabric_name: enterprise
+fabric_name: ENTERPRISE
 
 # Generate CSVs with fabric link info.
 eos_designs_documentation:

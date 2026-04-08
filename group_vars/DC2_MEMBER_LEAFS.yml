@@ -13,8 +13,6 @@ l2leaf:
     - group: DC2_ML_PAIR1
       uplink_switches: [dc2-al1, dc2-al2]
       mlag_peer_ipv4_pool: 169.254.255.254/31
-      mlag_peer_ip_address: 169.254.255.254
-      mlag_peer_neighbor_ip_address: 169.254.255.255
       nodes:
         - name: dc2-m1a
           id: 1
@@ -26,8 +24,6 @@ l2leaf:
     - group: DC2_ML_PAIR2
       uplink_switches: [dc2-m2a, dc2-m2b]
       mlag_peer_ipv4_pool: 169.254.255.254/31
-      mlag_peer_ip_address: 169.254.255.254
-      mlag_peer_neighbor_ip_address: 169.254.255.255
       nodes:
         - name: dc2-m2a
           id: 1

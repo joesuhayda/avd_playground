@@ -15,6 +15,7 @@ spine:
       mgmt_ip: 198.18.2.1/24
       downlink_pools:
         - ipv4_pool: 198.19.21.0/24
+        - downlink_interfaces: [Ethernet1-12]
 
     - name: dc2-sp2
       id: 2
@@ -22,8 +23,10 @@ spine:
       downlink_pools:
         - ipv4_pool: 198.19.22.0/24
 
+
     - name: dc2-sp3
       id: 3
       mgmt_ip: 198.18.2.3/24
       downlink_pools:
         - ipv4_pool: 198.19.23.0/24
+        - downlink_interfaces: [Ethernet1-12]
