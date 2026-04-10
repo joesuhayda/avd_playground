@@ -3,4 +3,4 @@
 
 mgmt_gateway: 198.18.2.255
 
-isis_area_id: "49.0002"
+# isis_area_id: "49.0002"
