@@ -9,7 +9,8 @@ l3leaf:
     loopback_ipv4_pool: 198.18.251.0/24
     loopback_ipv4_offset: 10
     vtep_loopback_ipv4_pool: 198.18.11.0/24
-    uplink_switches: [dc1-sp1, dc1-sp2, dc1-sp3] 
+    uplink_switches: [dc1-sp1, dc1-sp2, dc1-sp3]
+    uplink_interfaces: [Ethernet1, Ethernet2, Ethernet3]
     virtual_router_mac_address: 00:1c:73:00:00:99 
     spanning_tree_priority: 4096 
     spanning_tree_mode: mstp 

@@ -27,6 +27,7 @@ eos_designs_documentation:
 
 # Define underlay and overlay routing protocol to be used
 underlay_routing_protocol: isis
+underlay_ipv4_address_family: unnumbered
 overlay_routing_protocol: ebgp
 
 management_eapi:

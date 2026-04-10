@@ -12,6 +12,7 @@ l2leaf:
   node_groups:
     - group: DC1_ML_PAIR1
       uplink_switches: [dc1-al1, dc1-al2]
+      uplink_interfaces: [Ethernet1, Ethernet2]
       mlag_peer_ipv4_pool: 169.254.255.254/31
       nodes:
         - name: dc1-m1a
